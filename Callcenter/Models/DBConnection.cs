@@ -22,19 +22,20 @@ namespace Callcenter.Models
 
         public DBConnection(IOptions<MongoDbConf> options, IHubContext<SignalRHub> hubContext)
         {
-            var mongoDbConf = options.Value;
 
-            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(mongoDbConf.Connection));
-            settings.SslSettings = new SslSettings { EnabledSslProtocols = SslProtocols.Tls12 };
-            var mongoClient = new MongoClient(settings);
+            //var mongoDbConf = options.Value;
 
-            var database = mongoClient.GetDatabase(mongoDbConf.DbName);
+            //MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(mongoDbConf.Connection));
+            //settings.SslSettings = new SslSettings { EnabledSslProtocols = SslProtocols.Tls12 };
+            //var mongoClient = new MongoClient(settings);
 
-            requests = database.GetCollection<Entry>("requests");
-            captchas = database.GetCollection<Captcha>("captcha");
-            _hubContext = hubContext;
+            //var database = mongoClient.GetDatabase(mongoDbConf.DbName);
 
-            Listen();
+            //requests = database.GetCollection<Entry>("requests");
+            //captchas = database.GetCollection<Captcha>("captcha");
+            //_hubContext = hubContext;
+
+            //Listen();
         }
 
         internal Captcha GetCaptcha(string id) => captchas.Find(e => e.id == new ObjectId(id)).SingleOrDefault();
@@ -76,9 +77,9 @@ namespace Callcenter.Models
 
         public List<Entry> GetNoZip()
         {
-            var list = requests.Find(e => !e.finishts.HasValue && e.zip == "00000").ToList();
-            list.Sort(Entry.Compare);
-            return list;
+            //var list = requests.Find(e => !e.finishts.HasValue && e.zip == "00000").ToList();
+            //list.Sort(Entry.Compare);
+            return new List<Entry>();
         }
 
         public long CountNoZip() => requests.Find(e => e.zip == "00000").CountDocuments();
