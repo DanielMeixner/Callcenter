@@ -28,6 +28,11 @@ namespace Callcenter
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false)
+                .Build();
+            
             services.AddControllersWithViews();
             services.AddSignalR();
             services.AddSingleton<DBConnection>();
