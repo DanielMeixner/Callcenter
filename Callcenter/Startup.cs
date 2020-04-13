@@ -32,6 +32,9 @@ namespace Callcenter
 
             services.AddOptions();
             services.Configure<MongoDbConf>(Configuration.GetSection(nameof(MongoDbConf)));
+            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
+    .AddAzureAD(options => config.Bind("AzureAd", options));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
