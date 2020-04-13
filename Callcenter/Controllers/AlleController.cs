@@ -9,6 +9,7 @@ using Callcenter.Models;
 
 namespace Callcenter.Controllers
 {
+ [Authorize]
     public class AlleController : Controller
     {
         private readonly ILogger<AlleController> _logger;
