@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 
+
 namespace Callcenter
 {
     public class Startup
@@ -29,9 +30,7 @@ namespace Callcenter
         public void ConfigureServices(IServiceCollection services)
         {
             var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", false)
-                .Build();
+                      .Build();
             
             services.AddControllersWithViews();
             services.AddSignalR();
