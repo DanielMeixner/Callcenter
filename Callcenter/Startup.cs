@@ -32,7 +32,7 @@ namespace Callcenter
             var config = new ConfigurationBuilder()
                       .Build();
             
-            services.AddControllersWithViews();
+            
             services.AddSignalR();
             services.AddSingleton<DBConnection>();
 
@@ -41,6 +41,7 @@ namespace Callcenter
             services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
     .AddAzureAD(options => config.Bind("AzureAd", options));
 
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
